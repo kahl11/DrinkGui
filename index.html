@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <center id="cen"></center>
+	<script>window.$ = window.jQuery = require('jquery');</script>
+  <script>
+  var fs = require("fs");
+// Get content from file
+  var contents = fs.readFileSync("possiblecocktails.txt");
+// Define to JSON type
+  var jsonContent = JSON.parse(contents);
+  jsonContent.forEach(function(element) {
+    var txt1 = '<button align="center" id='+element.Name+'>'+element.Name+"</button>";
+  $("#cen").append(txt1);
+});
+
+  </script>
+<script>
+  $("button").click(function(){
+  var contents = fs.readFileSync("possiblecocktails.txt");
+  var jsonContent = JSON.parse(contents);
+  var nameid = this.id;
+  jsonContent.forEach(function(element) {
+    if (String(element.Name) == nameid){
+      alert(element.Booze);
+    }
+  });
+});
+</script>
+
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+  </body>
+</html>
